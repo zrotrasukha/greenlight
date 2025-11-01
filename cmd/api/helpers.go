@@ -24,7 +24,7 @@ func (app *application) readIDParam(r *http.Request) (int64, error) {
 }
 
 func (app *application) WriteJSON(w http.ResponseWriter, status int, body any, headers http.Header) error {
-	js, err := json.Marshal(body)
+	js, err := json.MarshalIndent(body, "", "\t")
 	if err != nil {
 		return err
 	}
