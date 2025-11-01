@@ -23,8 +23,10 @@ func (app *application) readIDParam(r *http.Request) (int64, error) {
 	return id, nil
 }
 
-func (app *application) WriteJSON(w http.ResponseWriter, status int, body any, headers http.Header) error {
-	js, err := json.MarshalIndent(body, "", "\t")
+type envelop map[string]interface{}
+
+func (app *application) WriteJSON(w http.ResponseWriter, status int, data envelop, headers http.Header) error {
+	js, err := json.MarshalIndent(data, "", "\t")
 	if err != nil {
 		return err
 	}
